@@ -1,0 +1,10 @@
+.header a {
+    display: block;
+    /*background-image: url("http://1.bp.blogspot.com/-BxzHv1At-k4/UQMyzvoh7hI/AAAAAAAAABU/MAh_DiHuI38/s1600/fitness.jpg");*/
+    background-repeat: no-repeat;
+    height:1060px;
+    padding-left:280px;
+    padding-top:50px;
+    width:1024px;
+    color: #eaeaea;
+}

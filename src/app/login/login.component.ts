@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { AppRoutesComponent } from '../app-routes/app-routes.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AppRoutesComponent} from '../app-routes/app-routes.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
