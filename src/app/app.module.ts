@@ -11,6 +11,12 @@ import { LeaderBoxComponent } from './leader-box/leader-box.component';
 import { StreamBoxComponent } from './stream-box/stream-box.component';
 import { OutBoxComponent } from './out-box/out-box.component';
 import { LoginComponent } from './login/login.component';
+
+
+
+//providers goes here
+import {PeerService} from './providers/peer.service';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent }
 ];
@@ -32,7 +38,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [PeerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
