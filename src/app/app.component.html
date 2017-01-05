@@ -1,3 +1,11 @@
-<div>
-	<app-home></app-home>
-</div>
+<md-sidenav-layout   class="app-content">
+    <md-sidenav #sidenav mode="side" class="app-sidenav">
+    Sidenav
+    </md-sidenav>
+   <div>
+        <div class="hamberger">
+            <button class="app-icon-button" (click)="sidenav.toggle()"><i class="material-icons app-toolbar-menu">menu</i></button>
+            <span class="app-toolbar-filler"></span>
+        </div>
+    </div>
+</md-sidenav-layout>
