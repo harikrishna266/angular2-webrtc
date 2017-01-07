@@ -9,8 +9,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { StreamBoxComponent } from './components/stream-box/stream-box.component';
+import { AngularFireModule } from 'angularfire2';
+
+
+
 //providers
 import { StreamigService } from './providers/streamig.service';
+import {LivestreamsService}  from './providers/livestreams.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'videobox', component: StreamBoxComponent },
@@ -19,7 +24,13 @@ const appRoutes: Routes = [
  
 ];
 
-
+export const firebaseConfig = {
+    apiKey: "AIzaSyDuNkOcwiMRckGJzeTML_oqRgxYsSBmzCg",
+    authDomain: "tutor-76b83.firebaseapp.com",
+    databaseURL: "https://tutor-76b83.firebaseio.com",
+    storageBucket: "tutor-76b83.appspot.com",
+    messagingSenderId: "466104162907"
+};
 
 @NgModule({
   declarations: [
@@ -29,13 +40,14 @@ const appRoutes: Routes = [
     StreamBoxComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig),  
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot()
   ],
-  providers: [StreamigService],
+  providers: [StreamigService,LivestreamsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
