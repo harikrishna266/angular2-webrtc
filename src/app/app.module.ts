@@ -10,12 +10,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { StreamBoxComponent } from './components/stream-box/stream-box.component';
 import { AngularFireModule } from 'angularfire2';
-
+import { StreamerSidebarComponent } from './components/streamer-sidebar/streamer-sidebar.component';
 
 
 //providers
-import { StreamigService } from './providers/streamig.service';
+import { PeerService } from './providers/streamig.service';
 import {LivestreamsService}  from './providers/livestreams.service';
+
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'videobox', component: StreamBoxComponent },
@@ -37,7 +38,8 @@ export const firebaseConfig = {
     AppComponent,
     LoginComponent,
     StreamBoxComponent,
-    StreamBoxComponent
+    StreamBoxComponent,
+    StreamerSidebarComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),  
@@ -47,7 +49,7 @@ export const firebaseConfig = {
     HttpModule,
     MaterialModule.forRoot()
   ],
-  providers: [StreamigService,LivestreamsService],
+  providers: [PeerService,LivestreamsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,7 @@
+md-list-item {
+     background: #ffffff;   
+     cursor: pointer;
+}
+md-list-item:hover {    
+    background: #cfcfcf;
+}

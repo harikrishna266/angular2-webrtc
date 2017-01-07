@@ -10,13 +10,14 @@ export class LivestreamsService {
       this.streamers = af.database.list('/streamers');
     }
 
-    createStreamer() {
-        this.streamers.list.push({'id':'123123','userid':'1212'})   
+    createStreamer(streamId) {
+        this.streamers.push({name:streamId});   
+    }
+    removeStreamer(streamId) {
+        console.log(streamId);
     }
 
-    deleteStreamer() {
-        //this.streamers.list.push({'id':'123123','userid':'1212'})      
-    }
+    
 
 
 }

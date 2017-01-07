@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 declare const Peer;
 declare const DataConnection;
 @Injectable()
-export class StreamigService {
+export class PeerService {
 	public peer: any;
     public DataConnection: any;
 	
