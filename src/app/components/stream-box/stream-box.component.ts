@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { PeerService } from '../../providers/streamig.service';
 import {LivestreamsService} from '../../providers/livestreams.service';
+import {LocalstoreService} from '../../providers/localstore.service';
 declare const navigator;
 declare const AdapterJS
 
@@ -15,7 +16,7 @@ export class StreamBoxComponent implements OnInit {
     public userMedia = <any>navigator;
     @ViewChild('videoElem') videoElem: any;
     
-    constructor(public peer:PeerService,public livestreams:LivestreamsService) {}
+    constructor(public peer:PeerService,public livestreams:LivestreamsService,public localstore:LocalstoreService) {}
 
     ngOnInit() {
         this.peer.peer.on('connection',(e)=>this.connectionIncoming(e));
@@ -33,12 +34,13 @@ export class StreamBoxComponent implements OnInit {
     }
     createPeerIdBeforeCameraInstantiation() {
         return new Promise((res,rej) => { 
-            this.peer.peer.on('open', (e) => this.livestreams.createStreamer(e).then(id => {res(true)}));
+            this.peer.peer.on('open', (e) => this.livestreams.createStreamer(e).then(id => {res(e)}));
         })      
     }    
     getCamera() {
         this.createPeerIdBeforeCameraInstantiation()
-        .then(res => {
+        .then((res:string) => {
+            this.livestreams.currentStreamId = res;
             if (!navigator.getUserMedia)
                 this.userMedia.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
             if (!navigator.cancelAnimationFrame)
@@ -61,7 +63,8 @@ export class StreamBoxComponent implements OnInit {
     }
     
     streamVideo(remoteStream) {
-        this.videoElem.nativeElement.src = URL.createObjectURL(remoteStream);
+        this.videoElem.nativeElement.srcObject = remoteStream;
+
     }
     error(err) {
       console.log(err);

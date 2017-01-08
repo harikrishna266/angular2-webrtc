@@ -6,6 +6,8 @@ export class LivestreamsService {
 
     public streamers:any;
     
+    public currentStreamId: string;
+
     constructor(af: AngularFire) {
       this.streamers = af.database.list('/streamers');
     }

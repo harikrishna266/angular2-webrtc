@@ -1,5 +1,7 @@
 <md-list>
-
-     <md-list-item *ngFor="let name of streams.streamers|async">
-        <md-icon md-list-video>video</md-icon> {{name.name}} </md-list-item>
+     <ng-container *ngFor="let name of streams.streamers|async">
+         <md-list-item  *ngIf="name!=streams.currentStreamId">
+            <md-icon md-list-video>video</md-icon> {{name.name}} 
+         </md-list-item>
+     </ng-container>
 </md-list>

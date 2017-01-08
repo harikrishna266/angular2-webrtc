@@ -1,0 +1,13 @@
+.ownVideosBox{
+    border: 5px solid white;
+    width: auto;
+    float: left;
+    position: absolute;
+    padding: 0px;
+    background-color: white;
+}
+#video {
+    width:400px;
+    height:300px;
+    cursor: move;
+}

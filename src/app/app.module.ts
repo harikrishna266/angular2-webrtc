@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
+
 //components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -16,13 +17,14 @@ import { StreamerSidebarComponent } from './components/streamer-sidebar/streamer
 //providers
 import { PeerService } from './providers/streamig.service';
 import {LivestreamsService}  from './providers/livestreams.service';
+import {LocalstoreService} from './providers/localstore.service';
+import { Draggable } from './directives/draggable.directive';
+
+
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'videobox', component: StreamBoxComponent },
-
-   
- 
 ];
 
 export const firebaseConfig = {
@@ -39,7 +41,9 @@ export const firebaseConfig = {
     LoginComponent,
     StreamBoxComponent,
     StreamBoxComponent,
-    StreamerSidebarComponent
+    StreamerSidebarComponent,
+    Draggable
+    
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),  
@@ -49,7 +53,7 @@ export const firebaseConfig = {
     HttpModule,
     MaterialModule.forRoot()
   ],
-  providers: [PeerService,LivestreamsService],
+  providers: [PeerService,LivestreamsService,LocalstoreService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
