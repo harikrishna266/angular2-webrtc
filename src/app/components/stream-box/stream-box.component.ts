@@ -18,51 +18,50 @@ export class StreamBoxComponent implements OnInit {
     constructor(public peer:PeerService,public livestreams:LivestreamsService) {}
 
     ngOnInit() {
-        this.peer.peer.on('open',(e)=>this.openStream(e));
-        this.peer.peer.on('disconnect',(e)=>this.closeStream(e));
+        this.peer.peer.on('connection',(e)=>this.connectionIncoming(e));
         this.getCamera();
   	}
 
-    openStream(e){
-        this.livestreams.createStreamer(e);
+    openStreamAndGetData(e){
+        this.peer.peer.on('data',(e)=>this.showRemoteStreamOnPlayer(e));
     }
-    closeStream(e) {
-        this.livestreams.removeStreamer(e);   
+    connectionIncoming(e) {
+        this.peer.peer.on('open',(e)=>this.openStreamAndGetData(e));
     }
-    getAllConnections() {
-        
+    showRemoteStreamOnPlayer(stream) {
+       this.videoElem.nativeElement.src = URL.createObjectURL(stream); 
     }
+    createPeerIdBeforeCameraInstantiation() {
+        return new Promise((res,rej) => { 
+            this.peer.peer.on('open', (e) => this.livestreams.createStreamer(e).then(id => {res(true)}));
+        })      
+    }    
     getCamera() {
-       console.log('in');
-       // this.userMedia.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-        if (!navigator.getUserMedia)
-            this.userMedia.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-        if (!navigator.cancelAnimationFrame)
-            this.userMedia.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
-        if (!navigator.requestAnimationFrame)
-            this.userMedia.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
-
-    this.userMedia.getUserMedia(
-        {
-            audio: {
-                "mandatory": {
-                    "googEchoCancellation": "false",
-                    "googAutoGainControl": "false",
-                    "googNoiseSuppression": "false",
-                    "googHighpassFilter": "false"
-                },
-                "optional": []
-            },video: true
-        }, (stream)=>this.streamVideo(stream),(e)=>this.error(e));
-
-       // this.userMedia.getUserMedia({video:true,audio:true},(stream)=>this.streamVideo(stream),(e)=>this.error(e))  
+        this.createPeerIdBeforeCameraInstantiation()
+        .then(res => {
+            if (!navigator.getUserMedia)
+                this.userMedia.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+            if (!navigator.cancelAnimationFrame)
+                this.userMedia.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
+            if (!navigator.requestAnimationFrame)
+                this.userMedia.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
+            this.userMedia.getUserMedia(
+                {
+                    audio: {
+                        "mandatory": {
+                            "googEchoCancellation": "false",
+                            "googAutoGainControl": "false",
+                            "googNoiseSuppression": "false",
+                            "googHighpassFilter": "false"
+                        },
+                        "optional": []
+                    },video: true
+                }, (stream)=>this.streamVideo(stream),(e)=>this.error(e));
+        })       
     }
     
     streamVideo(remoteStream) {
-        var video = <any>document.getElementById('video');
-        video.src = URL.createObjectURL(remoteStream);
-        // video.play();
+        this.videoElem.nativeElement.src = URL.createObjectURL(remoteStream);
     }
     error(err) {
       console.log(err);

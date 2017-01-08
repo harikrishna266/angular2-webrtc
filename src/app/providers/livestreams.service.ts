@@ -11,7 +11,7 @@ export class LivestreamsService {
     }
 
     createStreamer(streamId) {
-        this.streamers.push({name:streamId});   
+        return this.streamers.push({name:streamId});   
     }
     removeStreamer(streamId) {
         console.log(streamId);
