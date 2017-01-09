@@ -19,6 +19,9 @@ import { PeerService } from './providers/streamig.service';
 import {LivestreamsService}  from './providers/livestreams.service';
 import {LocalstoreService} from './providers/localstore.service';
 import { Draggable } from './directives/draggable.directive';
+import { StudentsHomePageComponent } from './pages/students-home-page/students-home-page.component';
+import { TutorHomePageComponent } from './pages/tutor-home-page/tutor-home-page.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 
@@ -42,7 +45,10 @@ export const firebaseConfig = {
     StreamBoxComponent,
     StreamBoxComponent,
     StreamerSidebarComponent,
-    Draggable
+    Draggable,
+    StudentsHomePageComponent,
+    TutorHomePageComponent,
+    LoginComponent
     
   ],
   imports: [
