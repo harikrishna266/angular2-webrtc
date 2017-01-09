@@ -1,3 +1,10 @@
-<p>
-  stream-box works!
-</p>
+<div class="ownVideosBox" draggable>
+    <button md-mini-fab class="button-close" (click)="closeCamera()">
+        <md-icon class="md-24">add</md-icon>
+    </button>
+    <video #videoElem autoplay   id="video" muted="true" *ngIf="CameraOn"></video>
+    <md-grid-list cols="2" [style.background]="'lightblue'" *ngIf="CameraOn">
+        <button md-raised-button color="primary" (click)="broadcast()">Broadcast</button>
+        <button md-raised-button color="accent" (click)="stopBroadcast()" >Stop</button>
+    </md-grid-list>
+</div>
