@@ -15,7 +15,10 @@ export class AppComponent {
   currentDog = {};
   isDarkTheme = false;
 
-  constructor(public dialog: MdDialog, public vcr: ViewContainerRef) {}
+  constructor(public dialog: MdDialog, public vcr: ViewContainerRef) {
+
+
+  }
 
   openDialog() {
     const config = new MdDialogConfig();

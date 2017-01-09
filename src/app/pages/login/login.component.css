@@ -7,3 +7,16 @@
     height: 100%;
     width: 100%
 }
+.card{
+    box-shadow: none;
+	background: no-repeat;
+	position: fixed;
+	top:50%;
+	left:30%;
+    background: thistle;
+    border-radius: 14px;
+}
+#buttonLogin{
+    background: slategrey;
+}
+

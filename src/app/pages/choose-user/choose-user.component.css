@@ -7,3 +7,18 @@
     height: 100%;
     width: 100%
 }
+.contentClass{
+	box-shadow: none;
+	background: none;
+	position: fixed;
+	top:30%;
+	left:30%;
+}
+#tutorbutton{
+	background: sienna;
+	color: whitesmoke;
+}
+#studentButton{
+	background: sienna;
+	color: whitesmoke;
+}

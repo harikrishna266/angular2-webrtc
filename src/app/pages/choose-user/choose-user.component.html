@@ -1,10 +1,9 @@
 <div class="choose">
-<h1>
-	Who are you?
-</h1>
+<md-card class="contentClass">
 <h3>
-	Choose the type of login!!!
+	Please Choose the type of login to Continue
 </h3>
-	 <a routerLink="/tutor" routerLinkActive="active">Tutor login</a>
-	 <a routerLink="/student" routerLinkActive="active">Student login</a>
+	 <button md-button (click)="tutorLogin()" id="tutorbutton">Tutor Login</button>
+	 <button md-button (click)="studentLogin()" id="studentButton">Student Login</button>
+</md-card>
 </div>
