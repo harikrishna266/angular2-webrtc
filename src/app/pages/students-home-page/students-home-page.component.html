@@ -1,3 +1,24 @@
-<p>
-  students-home-page works!
-</p>
+
+<md-sidenav-layout   class="app-content">
+    <md-sidenav #sidenav mode="side" class="app-sidenav">
+        <app-streamer-sidebar></app-streamer-sidebar>
+    </md-sidenav>
+    <md-toolbar color="primary">
+        <button class="app-icon-button" (click)="sidenav.toggle()">
+          <i class="material-icons app-toolbar-menu">menu</i>
+        </button>
+        Trainer
+        <span class="app-toolbar-filler"></span>
+        <span class="app-toolbar-filler"></span>
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+        <md-menu #menu="mdMenu">
+          <button md-menu-item (click)="openLogin()">
+            <md-icon>dialpad</md-icon>
+            <span><a >login</a></span>
+          </button>
+        </md-menu>
+  </md-toolbar>
+  <app-stream-box></app-stream-box>
+</md-sidenav-layout> 

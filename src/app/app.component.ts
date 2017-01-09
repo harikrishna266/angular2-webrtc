@@ -1,6 +1,6 @@
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import {MdSidenav, MdDialog, MdDialogConfig} from "@angular/material";
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { StreamBoxComponent } from './components/stream-box/stream-box.component';
 
 
